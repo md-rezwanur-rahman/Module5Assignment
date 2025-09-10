@@ -1,0 +1,89 @@
+import 'dart:ffi';
+
+main(){
+  Book himu = Book('আজ হিমুর বিয়ে', 'হুমায়ূন আহমেদ', 900);
+  himu.discountedPrice(20);
+  himu.details();
+  Book misir = Book('মিসির আলি সমগ্র-১"', 'হুমায়ূন আহমেদ', 800);
+  misir.discountedPrice(30);
+  misir.details();
+  Manager manager1 = Manager('Sakibur Rahman',40000.0, 'HR');
+  manager1.details();
+  Developer dev1 = Developer('Sadat Sakib', 50000.0, 'Python');
+  dev1.details();
+  Appliance fan1 = Fan();
+  fan1.turnOn();
+  fan1.turnOff();
+  Appliance light1 = Light();
+  light1.turnOn();
+  light1.turnOff();
+
+}
+
+
+
+class Book{
+  String title;
+  String author;
+  double price;
+  Book(this.title,this.author,this.price);
+  discountedPrice(double discountPercent){
+    price = price- price*(discountPercent/100);
+    return price;
+    
+  }
+  details(){
+    print(' Book Titel: $title \n Book Author: $author \n Book Price:$price');
+  }
+}
+
+class Employee{
+  String name;
+  double salary;
+  Employee(this.name,this.salary);
+}
+class Manager extends Employee{
+  String department;
+  Manager(super.name,super.salary,this.department);
+  details(){
+    print(' Manager Name $name \n Manager Salary :$salary \n Manager department :$department');
+  }
+}
+class Developer extends Employee {
+  String programmingLanguage;
+  Developer(super.name, super.salary,this.programmingLanguage);
+  details(){
+    print(' Developer Name $name \n Developer Salary :$salary \n Developer Programming Language :$programmingLanguage');
+  }
+
+}
+
+abstract class Appliance{
+  turnOn();
+  turnOff();
+}
+
+class Fan implements Appliance{
+  @override
+  turnOn() {
+    // TODO: implement turnOn
+    print("Fan is now running");
+  }
+  @override
+  turnOff() {
+    // TODO: implement turnOff
+    print("Fan is not running now");
+  }
+}
+class Light implements Appliance{
+  @override
+  turnOn() {
+    // TODO: implement turnOn
+    print("Light is switched on");
+  }
+  @override
+  turnOff() {
+    // TODO: implement turnOff
+    print("Light is switched off");
+  }
+}
